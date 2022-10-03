@@ -1,9 +1,11 @@
 package com.example.crudappc;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,80 +19,82 @@ import com.example.crudappc.utils.Conexion;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
-
-    API apiUser;
-    EditText edtId;
-    TextView tvNombre;
-    TextView tvEmail;
-    TextView tvPassword;
-    Button btnBuscar;
+public class MainActivity extends AppCompatActivity
+{
+    API apiEmpleado;
+    public static final String empleadoIngresar_activity = "com.example.crudappc.EmpleadoIngresar";
+    public static final String activityEmpleado = "com.example.crudappc.EmpleadoIngresar";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edtId=findViewById(R.id.edtId);
-        tvNombre=findViewById(R.id.nombre);
-        tvEmail=findViewById(R.id.email);
-        tvPassword=findViewById(R.id.password);
-        btnBuscar = findViewById(R.id.btnBuscar);
+
+        TextView nombre = (TextView) findViewById(R.id.nombre);
+        EditText txtNombre = (EditText) findViewById(R.id.txtNombre);
+        TextView email = (TextView) findViewById(R.id.email);
+        EditText txtEmail = (EditText) findViewById(R.id.txtEmail);
+        TextView password = (TextView) findViewById(R.id.password);
+        EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
+
+        Button btnIngresar = (Button) findViewById(R.id.btnIngresar);
+        Button btnEliminar= (Button) findViewById(R.id.btnEliminar);
 
 
-
-
-        // se genera el evento del boton buscar producto
-
-
-
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
+        btnIngresar.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
-                // le pasamos al metodo el id que capturamos del usuario
-                //find(edtId.getText().toString());
-                findUserById(Long.parseLong(edtId.getText().toString()));
+                Empleado empleado = new Empleado();
+                empleado.setNombre(txtNombre.getText().toString());
+                empleado.setEmail(txtEmail.getText().toString());
+                empleado.setPassword(txtPassword.getText().toString());
+                addEmpleado(empleado);
             }
         });
+
+
     }
-    private void findUserById(Long id)
+
+    public void addEmpleado(Empleado empleado)
     {
 
-        apiUser = Conexion.getEmpleadoInterface(); // hacer la conexion
+        apiEmpleado = Conexion.getEmpleadoInterface(); // hacer la conexion
 
-        // hacer la llamada http
-        //Call<Empleado> call = api.findById(id);
+        Call<Empleado> call = apiEmpleado.addEmpleado(empleado);
 
-        Call<Empleado> call1 = apiUser.DeleteById(id);
-
-        call1.enqueue(new Callback<Empleado>() {
+        call.enqueue(new Callback<Empleado>() {
             @Override
             public void onResponse(Call<Empleado> call, Response<Empleado> response) {
-                try {
-                    if(response.isSuccessful())
-                    {
-                        // se debe capturar los datos de respuesta en el objeto empleado
-
-
-                        Empleado empleado = response.body();
-                        /* asignar a cada uno de los controles los datos de cada uno
-                        * de los datos obtenidos de la api*/
-                        tvNombre.setText(empleado.getNombre());
-                        tvEmail.setText(empleado.getEmail());
-                        tvPassword.setText(empleado.getPassword());
-                    }
-                }catch (Exception e) {
-                    Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                if( response != null )
+                {
+                    //Toast.makeText(EmpleadoActivity.this, "Se agregó con éxito", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Se agregó con éxito", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Empleado> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error de conexion", Toast.LENGTH_SHORT).show();
+                Log.e("Error: ", t.getMessage());
             }
         });
+
+        /* Despues de ejecutado el metodo agregar hacer que se direccione al Main Activity
+         */
+        // Por si la instancia de arriba no funciona
+        //Intent intent = new Intent(MainActivity.this, EmpleadoIngresar.class);
+        //startActivity(intent);
     }
+
+    public void activityEliminar(View view)
+    {
+        // Do something in response to button
+        Intent intent = new Intent(this, EmpleadoIngresar.class);
+        startActivity(intent);
+    }
+
+
 }
