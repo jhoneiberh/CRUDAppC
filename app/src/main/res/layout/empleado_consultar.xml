@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
+    tools:context=".EmpleadoConsultar"
     android:background="#23004A">
 
     <TextView
@@ -13,36 +13,61 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Nombre"
+        android:text="Ingrese el Id del User"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/tvNombre"
+        android:id="@+id/txtId"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/radius"
         android:gravity="center"
+        android:hint="ID"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvId" />
 
     <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:layout_marginTop="10dp"
+        android:id="@+id/tvNombre"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Nombre"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtId" />
+
+    <TextView
+
+        android:id="@+id/showNombre"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/boton"
         android:fontFamily="@font/roboto_mono"
-        android:text="Email"
+        android:gravity="center"
+        android:hint="Nombre del User"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
@@ -50,82 +75,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/radius"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
-
     <TextView
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:layout_marginTop="10dp"
+        android:id="@+id/tvEmail"
+        android:layout_width="300dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_mono"
-        android:text="Password"
+        android:text="Email"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/showNombre" />
 
-    <EditText
-        android:id="@+id/txtPassword"
+    <TextView
+        android:id="@+id/showEmail"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/radius"
+        android:background="@drawable/boton"
+        android:fontFamily="@font/roboto_mono"
         android:gravity="center"
+        android:hint="Email del User"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
     <Button
-        android:id="@+id/btnIngresar"
+        android:id="@+id/btnConsultar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/radius"
-        android:text="Ingresar Empleado"
+        android:text="Consultar Empleado"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
-
-    <Button
-        android:id="@+id/btnConsultarId"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/radius"
-        android:text="Consultar por Id >"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIngresar" />
-
-    <Button
-        android:id="@+id/btnEliminar"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/radius"
-        android:onClick="activityEliminar"
-        android:text="Eliminar >"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnConsultarId" />
+        app:layout_constraintTop_toBottomOf="@+id/showEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

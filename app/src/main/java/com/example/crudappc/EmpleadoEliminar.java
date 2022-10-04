@@ -18,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EmpleadoIngresar extends AppCompatActivity
+public class EmpleadoEliminar extends AppCompatActivity
 {
 
     API apiUser;
@@ -26,7 +26,7 @@ public class EmpleadoIngresar extends AppCompatActivity
     TextView tvsendMessage;
     TextView tvEmail;
     TextView tvPassword;
-    Button btnBuscar;
+    Button btnEliminar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +39,11 @@ public class EmpleadoIngresar extends AppCompatActivity
 
 
         edtId=findViewById(R.id.edtId);
-
-        tvEmail=findViewById(R.id.email);
-        tvPassword=findViewById(R.id.password);
-        btnBuscar = findViewById(R.id.btnEliminar);
+        btnEliminar = findViewById(R.id.btnDeleteEmpleado);
 
         // se genera el evento del boton buscar producto
 
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // le pasamos al metodo el id que capturamos del usuario
@@ -55,41 +52,37 @@ public class EmpleadoIngresar extends AppCompatActivity
 
                 /* Despues de ejecutado el metodo agregar hacer que se direccione al Main Activity
                  */
-                Intent intent = new Intent(EmpleadoIngresar.this, MainActivity.class);
-                startActivity(intent);
+
             }
         });
     }
     private void findUserById(Long id)
     {
-
         apiUser = Conexion.getEmpleadoInterface(); // hacer la conexion
 
         // hacer la llamada http
-        //Call<Empleado> call = api.findById(id);
-
         Call<Empleado> call1 = apiUser.DeleteById(id);
 
         call1.enqueue(new Callback<Empleado>() {
             @Override
             public void onResponse(Call<Empleado> call, Response<Empleado> response) {
                 try {
-                    if(response.isSuccessful())
+                    if(response != null)
                     {
                         // se debe capturar los datos de respuesta en el objeto empleado
                         Empleado empleado = response.body();
+                        Toast.makeText(EmpleadoEliminar.this, "Se eliminó con éxito", Toast.LENGTH_SHORT).show();
                         /* asignar a cada uno de los controles los datos de cada uno
                          * de los datos obtenidos de la api*/
-                        Toast.makeText(EmpleadoIngresar.this, "Usuario eliminado", Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e) {
-                    Toast.makeText(EmpleadoIngresar.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EmpleadoEliminar.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Empleado> call, Throwable t) {
-                Toast.makeText(EmpleadoIngresar.this, "Error de conexion", Toast.LENGTH_SHORT).show();
+                Toast.makeText(EmpleadoEliminar.this, "", Toast.LENGTH_SHORT).show();
             }
         });
     }

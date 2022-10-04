@@ -23,8 +23,6 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
 {
     API apiEmpleado;
-    public static final String empleadoIngresar_activity = "com.example.crudappc.EmpleadoIngresar";
-    public static final String activityEmpleado = "com.example.crudappc.EmpleadoIngresar";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -33,15 +31,17 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
 
-        TextView nombre = (TextView) findViewById(R.id.nombre);
-        EditText txtNombre = (EditText) findViewById(R.id.txtNombre);
-        TextView email = (TextView) findViewById(R.id.email);
+        TextView nombre = (TextView) findViewById(R.id.tvId);
+        EditText txtNombre = (EditText) findViewById(R.id.tvNombre);
+        TextView email = (TextView) findViewById(R.id.tvEmail);
         EditText txtEmail = (EditText) findViewById(R.id.txtEmail);
         TextView password = (TextView) findViewById(R.id.password);
         EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
 
         Button btnIngresar = (Button) findViewById(R.id.btnIngresar);
         Button btnEliminar= (Button) findViewById(R.id.btnEliminar);
+
+        Button btnBuscarUser = (Button) findViewById(R.id.btnConsultarId);
 
 
         btnIngresar.setOnClickListener(new View.OnClickListener()
@@ -57,11 +57,19 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+        btnBuscarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, EmpleadoConsultar.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public void addEmpleado(Empleado empleado)
     {
-
         apiEmpleado = Conexion.getEmpleadoInterface(); // hacer la conexion
 
         Call<Empleado> call = apiEmpleado.addEmpleado(empleado);
@@ -82,19 +90,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        /* Despues de ejecutado el metodo agregar hacer que se direccione al Main Activity
-         */
-        // Por si la instancia de arriba no funciona
-        //Intent intent = new Intent(MainActivity.this, EmpleadoIngresar.class);
-        //startActivity(intent);
     }
 
     public void activityEliminar(View view)
     {
         // Do something in response to button
-        Intent intent = new Intent(this, EmpleadoIngresar.class);
+        Intent intent = new Intent(MainActivity.this, EmpleadoEliminar.class);
         startActivity(intent);
     }
+
+   /* public void activityConsultar(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, EmpleadoConsultar.class);
+        startActivity(intent);
+    }*/
 
 
 }

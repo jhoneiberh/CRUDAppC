@@ -14,11 +14,18 @@ public interface API
     // se declaran todas las operaciones que se quieren consumir
 
     @GET("/consultar/{id}")
-    public Call<Empleado> findById(@Path("id") String id);
+    public Call<Empleado> findById(@Path("{id}") Empleado empleado);
 
     @DELETE("/user/{id}")
     public Call<Empleado> DeleteById(@Path("id") Long id);
 
     @POST("/guardar")
     public Call<Empleado> addEmpleado(@Body Empleado empleado);
+
+    @GET("/consultarporid")
+    public Call<Empleado> findUserById(@Path("{id}") Long id);
+
+
+
+
 }
