@@ -1,6 +1,7 @@
 package com.example.crudappc;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,11 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.crudappc.interfaces.API;
 import com.example.crudappc.model.Empleado;
 import com.example.crudappc.utils.Conexion;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +34,8 @@ public class EmpleadoConsultar extends AppCompatActivity
     TextView showNombre;
     TextView tvtEmail;
     TextView showEmail;
-
+    List<Empleado> empleado;
+private String rt;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +56,8 @@ public class EmpleadoConsultar extends AppCompatActivity
 
                 // para el id traido del Editext
                 findByUser(Long.parseLong(txtId.getText().toString()));
-
-                //showNombre.setText(empleado.getNombre());
+                //findBy(Long.parseLong(txtId.getText().toString()));
+                //showNombre.setText(rt);
                 //showEmail.setText(empleado.getEmail());
             }
         });
@@ -68,16 +73,19 @@ public class EmpleadoConsultar extends AppCompatActivity
         call.enqueue(new Callback<Empleado>() {
             @Override
             public void onResponse(Call<Empleado> call, Response<Empleado> response) {
-                if (response.isSuccessful())
-                {
-                    Empleado empleado = response.body();
+                try {
 
-                    Log.i(empleado.getNombre(), "MOSTRANDO VALOR DE NOMBRE EMPLEADO");
-
-
-
-
-                    Toast.makeText(EmpleadoConsultar.this, "Get correcto", Toast.LENGTH_SHORT).show();
+                    if (response.isSuccessful())
+                    {
+                        Empleado empleado = response.body();
+                        //showNombre.setText(empleado.getNombre().toString());
+                        showNombre.setText(String.valueOf(empleado.getNombre()));
+                        Log.i("MENSAJE",empleado.getEmail().toString());
+                        //showEmail.setText(empleado.getEmail().toString());
+                        showEmail.setText(String.valueOf(empleado.getEmail()));
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(EmpleadoConsultar.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -85,6 +93,36 @@ public class EmpleadoConsultar extends AppCompatActivity
             public void onFailure(Call<Empleado> call, Throwable t) {
                 Toast.makeText(EmpleadoConsultar.this, "Error de Conexion", Toast.LENGTH_SHORT).show();
                 Log.e("Get no cumplido", t.getMessage());
+            }
+        });
+    }
+
+    private void findBy(Long id)
+    {
+        apiUser = Conexion.getEmpleadoInterface();
+        Call<List<Empleado>> call = apiUser.findUserId(id);
+
+        call.enqueue(new Callback<List<Empleado>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onResponse(Call<List<Empleado>> call, Response<List<Empleado>> response) {
+                if (!response.isSuccessful())
+                {
+                    Toast.makeText(EmpleadoConsultar.this, "Erro al mostrar usuario", Toast.LENGTH_SHORT).show();
+                    Log.e("Response err: ",response.message());
+                    return;
+                }
+                empleado = response.body();
+                empleado.forEach(p -> {
+                showNombre.setText(p.getNombre().toString());
+                showEmail.setText(p.getEmail().toString());
+                });
+            }
+
+            @Override
+            public void onFailure(Call<List<Empleado>> call, Throwable t) {
+                Toast.makeText(EmpleadoConsultar.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("Throw err: ",t.getMessage());
             }
         });
     }

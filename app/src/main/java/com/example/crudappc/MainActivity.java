@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
 
 
         TextView nombre = (TextView) findViewById(R.id.tvId);
-        EditText txtNombre = (EditText) findViewById(R.id.tvNombre);
+        EditText txtNombre = (EditText) findViewById(R.id.txtNombre);
         TextView email = (TextView) findViewById(R.id.tvEmail);
         EditText txtEmail = (EditText) findViewById(R.id.txtEmail);
         TextView password = (TextView) findViewById(R.id.password);
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity
             public void onResponse(Call<Empleado> call, Response<Empleado> response) {
                 if( response != null )
                 {
+                    Empleado empleado = response.body();
                     //Toast.makeText(EmpleadoActivity.this, "Se agregó con éxito", Toast.LENGTH_LONG).show();
                     Toast.makeText(MainActivity.this, "Se agregó con éxito", Toast.LENGTH_SHORT).show();
                 }
@@ -98,12 +99,4 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MainActivity.this, EmpleadoEliminar.class);
         startActivity(intent);
     }
-
-   /* public void activityConsultar(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, EmpleadoConsultar.class);
-        startActivity(intent);
-    }*/
-
-
 }

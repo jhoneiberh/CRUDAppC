@@ -4,7 +4,7 @@ import com.example.crudappc.interfaces.API;
 
 public class Conexion
 {
-    private static final String URL_001 = "http://192.168.0.44:8080";
+    private static final String URL_001 = "http://192.168.0.13:8080";
 
     public static API getEmpleadoInterface()
     {

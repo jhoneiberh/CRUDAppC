@@ -16,6 +16,8 @@ public class Login extends AppCompatActivity
     EditText editUser;
     EditText editPassword;
     Button btnLogin;
+    String PASSWORD = "android";
+    String USER = "android";
 
 
     @Override
@@ -33,7 +35,7 @@ public class Login extends AppCompatActivity
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ( editUser.getText().toString().equals("android") && editPassword.getText().toString().equals("android"))
+                if ( editUser.getText().toString().equals(USER) && editPassword.getText().toString().equals(PASSWORD))
                 {
                     Toast.makeText(Login.this, "Credenciales correctas", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this, MainActivity.class);

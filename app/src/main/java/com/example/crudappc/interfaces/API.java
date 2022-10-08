@@ -2,6 +2,8 @@ package com.example.crudappc.interfaces;
 
 import com.example.crudappc.model.Empleado;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -14,7 +16,7 @@ public interface API
     // se declaran todas las operaciones que se quieren consumir
 
     @GET("/consultar/{id}")
-    public Call<Empleado> findById(@Path("{id}") Empleado empleado);
+    public Call<Empleado> findById(@Path("id") Empleado empleado);
 
     @DELETE("/user/{id}")
     public Call<Empleado> DeleteById(@Path("id") Long id);
@@ -25,7 +27,7 @@ public interface API
     @GET("/consultarporid")
     public Call<Empleado> findUserById(@Path("{id}") Long id);
 
-
-
+    @GET("/consultarporid")
+    public Call<List<Empleado>> findUserId(@Path("{id}") Long id);
 
 }

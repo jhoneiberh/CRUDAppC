@@ -21,12 +21,12 @@
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/tvNombre"
+        android:id="@+id/txtNombre"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="3dp"
@@ -37,10 +37,12 @@
         app:layout_constraintTop_toBottomOf="@+id/tvId" />
 
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/Email"
         android:layout_width="match_parent"
-        android:layout_height="37dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto_mono"
         android:text="Email"
         android:textAlignment="center"
@@ -48,7 +50,7 @@
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
 
     <EditText
         android:id="@+id/txtEmail"
@@ -60,8 +62,9 @@
         android:background="@drawable/radius"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
 
     <TextView
         android:id="@+id/password"
