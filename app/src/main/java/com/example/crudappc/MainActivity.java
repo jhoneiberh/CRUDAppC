@@ -1,11 +1,15 @@
 package com.example.crudappc;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +27,13 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity
 {
     API apiEmpleado;
+
+    private Button btnFacebook;
+    private Button bntTwitter;
+    private Button btnYoutube;
+    private String URL_TO_YOUTUBE = "http://www.youtube.com";
+    private String URL_TO_FACEBOOK = "http://www.facebook.com";
+    private String URL_TO_TWITTER = "http://www.twitter.com";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -42,6 +53,11 @@ public class MainActivity extends AppCompatActivity
         Button btnEliminar= (Button) findViewById(R.id.btnEliminar);
 
         Button btnBuscarUser = (Button) findViewById(R.id.btnConsultarId);
+
+
+        btnFacebook = (Button) findViewById(R.id.btnFacebook);
+        bntTwitter= (Button) findViewById(R.id.btnTwitter);
+        btnYoutube = (Button) findViewById(R.id.btnYoutube);
 
 
         btnIngresar.setOnClickListener(new View.OnClickListener()
@@ -66,6 +82,37 @@ public class MainActivity extends AppCompatActivity
         });
 
 
+        /**
+         * Botones de redes sociales
+         */
+
+        btnYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://www.youtube.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        bntTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://twitter.com/BlackClover_EN");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        btnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://www.facebook.com/blackclover.fans/");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void addEmpleado(Empleado empleado)
@@ -76,7 +123,8 @@ public class MainActivity extends AppCompatActivity
 
         call.enqueue(new Callback<Empleado>() {
             @Override
-            public void onResponse(Call<Empleado> call, Response<Empleado> response) {
+            public void onResponse(Call<Empleado> call, Response<Empleado> response)
+            {
                 if( response != null )
                 {
                     Empleado empleado = response.body();
@@ -93,10 +141,64 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_desplegable, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    /**
+     * Agsignar mensaje a los botones
+     */
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        int id = item.getItemId();
+        Intent intent = new Intent(MainActivity.this, Bienvenida.class);
+        switch (id)
+        {
+            case R.id.item1:
+                Toast.makeText(this, "Bienvenido a la aplicación v1", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+
+            case R.id.item2:
+                Toast.makeText(this, "Bienvenido a la aplicación v2", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+
+            case R.id.item3:
+                Toast.makeText(this, "Bienvenida a la aplicación v3", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+
+            case R.id.item4:
+                Toast.makeText(this, "Bienvenida a la aplicación v4", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void activityEliminar(View view)
     {
         // Do something in response to button
         Intent intent = new Intent(MainActivity.this, EmpleadoEliminar.class);
         startActivity(intent);
     }
+
+
+     /*btnYoutube.setOnClickListener(new View.OnClickListener()
+     {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, URL_TO_YOUTUBE);
+            startActivity(Intent.createChooser(intent, "Share"));
+     }
+    });*/
 }

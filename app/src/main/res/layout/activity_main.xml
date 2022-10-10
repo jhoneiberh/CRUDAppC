@@ -111,7 +111,7 @@
         android:id="@+id/btnConsultarId"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/radius"
         android:text="Consultar por Id >"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,7 +122,7 @@
         android:id="@+id/btnEliminar"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/radius"
         android:onClick="activityEliminar"
         android:text="Eliminar >"
@@ -130,5 +130,42 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnConsultarId" />
+
+    <Button
+        android:id="@+id/btnTwitter"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:text="Twitter"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
+
+    <Button
+        android:id="@+id/btnFacebook"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:text="Facebook"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnYoutube"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
+
+    <Button
+        android:id="@+id/btnYoutube"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:hapticFeedbackEnabled="false"
+        android:text="Youtube"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnTwitter"
+        app:layout_constraintStart_toEndOf="@+id/btnFacebook"
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

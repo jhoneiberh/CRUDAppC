@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CRUDAppC</string>
+    <string name="item1">Bienvenida</string>
+    <string name="item2">Despedida</string>
+
+
 </resources>
