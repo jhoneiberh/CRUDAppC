@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity
     private Button btnFacebook;
     private Button bntTwitter;
     private Button btnYoutube;
+    private ImageButton imgBtnFacebook;
+    private ImageButton imgBtnTwitter;
+    private ImageButton imgBtnYoutube;
     private String URL_TO_YOUTUBE = "http://www.youtube.com";
     private String URL_TO_FACEBOOK = "http://www.facebook.com";
     private String URL_TO_TWITTER = "http://www.twitter.com";
@@ -55,9 +59,13 @@ public class MainActivity extends AppCompatActivity
         Button btnBuscarUser = (Button) findViewById(R.id.btnConsultarId);
 
 
-        btnFacebook = (Button) findViewById(R.id.btnFacebook);
+        /*btnFacebook = (Button) findViewById(R.id.btnFacebook);
         bntTwitter= (Button) findViewById(R.id.btnTwitter);
-        btnYoutube = (Button) findViewById(R.id.btnYoutube);
+        btnYoutube = (Button) findViewById(R.id.btnYoutube);*/
+
+        imgBtnFacebook = (ImageButton) findViewById(R.id.imgBtnFacebook);
+        imgBtnTwitter = (ImageButton) findViewById(R.id.imgBtnTwitter);
+        imgBtnYoutube = (ImageButton) findViewById(R.id.imgBtnYoutube);
 
 
         btnIngresar.setOnClickListener(new View.OnClickListener()
@@ -85,6 +93,7 @@ public class MainActivity extends AppCompatActivity
         /**
          * Botones de redes sociales
          */
+/*
 
         btnYoutube.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +121,37 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+*/
+
+
+
+        imgBtnYoutube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://www.youtube.com");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        imgBtnTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("http://twitter.com/BlackClover_EN");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        imgBtnFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://www.facebook.com/blackclover.fans/");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
 
     }
 

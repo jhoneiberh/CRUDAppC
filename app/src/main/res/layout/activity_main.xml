@@ -130,7 +130,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnConsultarId" />
-
+<!--
     <Button
         android:id="@+id/btnTwitter"
         android:layout_width="100dp"
@@ -166,6 +166,48 @@
         android:textSize="10dp"
         app:layout_constraintEnd_toStartOf="@+id/btnTwitter"
         app:layout_constraintStart_toEndOf="@+id/btnFacebook"
-        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />-->
+
+    <ImageButton
+        android:id="@+id/imgBtnFacebook"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnYoutube"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnEliminar"
+        app:srcCompat="@mipmap/facebook" />
+
+    <ImageButton
+        android:id="@+id/imgBtnTwitter"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgBtnYoutube"
+        app:layout_constraintTop_toBottomOf="@id/btnEliminar"
+        app:srcCompat="@mipmap/twitter" />
+
+    <ImageButton
+        android:id="@+id/imgBtnYoutube"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnTwitter"
+        app:layout_constraintStart_toEndOf="@+id/imgBtnFacebook"
+        app:layout_constraintTop_toBottomOf="@id/btnEliminar"
+        app:srcCompat="@mipmap/youtube" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
