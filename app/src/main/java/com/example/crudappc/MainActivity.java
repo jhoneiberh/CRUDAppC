@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity
 {
     API apiEmpleado;
 
-    private Button btnFacebook;
-    private Button bntTwitter;
-    private Button btnYoutube;
     private ImageButton imgBtnFacebook;
     private ImageButton imgBtnTwitter;
     private ImageButton imgBtnYoutube;
@@ -58,10 +55,6 @@ public class MainActivity extends AppCompatActivity
 
         Button btnBuscarUser = (Button) findViewById(R.id.btnConsultarId);
 
-
-        /*btnFacebook = (Button) findViewById(R.id.btnFacebook);
-        bntTwitter= (Button) findViewById(R.id.btnTwitter);
-        btnYoutube = (Button) findViewById(R.id.btnYoutube);*/
 
         imgBtnFacebook = (ImageButton) findViewById(R.id.imgBtnFacebook);
         imgBtnTwitter = (ImageButton) findViewById(R.id.imgBtnTwitter);
@@ -93,38 +86,6 @@ public class MainActivity extends AppCompatActivity
         /**
          * Botones de redes sociales
          */
-/*
-
-        btnYoutube.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Uri.parse("http://www.youtube.com");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
-
-        bntTwitter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Uri.parse("http://twitter.com/BlackClover_EN");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
-
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri uri = Uri.parse("https://www.facebook.com/blackclover.fans/");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            }
-        });
-*/
-
-
-
         imgBtnYoutube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,17 +189,4 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MainActivity.this, EmpleadoEliminar.class);
         startActivity(intent);
     }
-
-
-     /*btnYoutube.setOnClickListener(new View.OnClickListener()
-     {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, URL_TO_YOUTUBE);
-            startActivity(Intent.createChooser(intent, "Share"));
-     }
-    });*/
 }
